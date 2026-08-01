@@ -1,5 +1,8 @@
 # MemoryBridge
 
+**Award 1 Winner — Agents for Good**  
+**Google & Kaggle AI Agents: Intensive Vibe Coding Capstone Project**
+
 **A safety-first assistive prototype for people living with early-stage dementia and their caregivers.**
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](LICENSE)
