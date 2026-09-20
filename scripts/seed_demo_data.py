@@ -25,6 +25,8 @@ import sys
 import json
 import argparse
 from os.path import abspath, dirname, join
+import dotenv
+dotenv.load_dotenv()
 
 # Ensure mcp-routines src is importable
 sys.path.insert(0, join(dirname(dirname(abspath(__file__))), "services", "mcp-routines"))

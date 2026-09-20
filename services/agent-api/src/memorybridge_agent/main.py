@@ -1,6 +1,8 @@
 import logging
 import os
 import sys
+import dotenv
+dotenv.load_dotenv()
 from fastapi import FastAPI
 from fastapi.responses import JSONResponse
 from .api.middleware import CorrelationIdMiddleware, ErrorHandlingMiddleware, RateLimitMiddleware
@@ -71,8 +73,8 @@ async def root_readiness_check():
         mcp_client_path = _os.path.join(mcp_dir, "src", "server.py")
     else:
         mcp_client_path = _os.path.join(
-            _os.path.dirname(_os.path.abspath(__file__)),
-            "..", "..", "..", "..", "mcp-routines", "src", "server.py"
+            _os.path.dirname(_os.path.dirname(_os.path.dirname(_os.path.dirname(_os.path.abspath(__file__))))),
+            "mcp-routines", "src", "server.py"
         )
     mcp_resolved = _os.path.normpath(mcp_client_path)
     if not _os.path.exists(mcp_resolved):
