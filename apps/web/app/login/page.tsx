@@ -4,9 +4,9 @@ export default function LoginPage() {
   return (
     <main className="min-h-screen flex items-center justify-center bg-slate-50 text-slate-900 p-4">
       <div className="max-w-md w-full bg-white p-8 rounded-xl shadow-sm border border-slate-200">
-        <h1 className="text-2xl font-semibold mb-2">MemoryBridge Demo</h1>
+        <h1 className="text-2xl font-semibold mb-2">MemoryBridge</h1>
         <p className="text-slate-600 mb-6">
-          This is a demonstration environment. No real data or actual production authentication is used.
+          Access the caregiver and assisted-user management environment.
         </p>
         
         <form action={loginDemo}>
@@ -14,7 +14,7 @@ export default function LoginPage() {
             type="submit"
             className="w-full bg-slate-900 text-white font-medium py-3 px-4 rounded-lg hover:bg-slate-800 transition-colors focus:ring-2 focus:ring-offset-2 focus:ring-slate-900 outline-none"
           >
-            Enter Demo Environment
+            Sign In to MemoryBridge
           </button>
         </form>
 

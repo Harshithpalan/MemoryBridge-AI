@@ -332,8 +332,8 @@ async function fetchAPI(endpoint: string, options: RequestInit = {}) {
   const API_BASE = process.env.AGENT_API_BASE_URL;
   const TOKEN = process.env.DEMO_CAREGIVER_TOKEN || 'caregiver-123';
 
-  // If API_BASE is missing or points to localhost, use fallback demo store for cloud deployments
-  if (!API_BASE || API_BASE.includes('localhost')) {
+  // If API_BASE is missing, use fallback store for standalone cloud previews
+  if (!API_BASE) {
     return handleMockResponse(endpoint, options);
   }
 

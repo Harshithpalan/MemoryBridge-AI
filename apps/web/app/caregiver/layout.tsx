@@ -17,14 +17,6 @@ export default function CaregiverLayout({
         Skip to main content
       </a>
 
-      {/* Persistent Demo Banner */}
-      <div className="bg-amber-100 text-amber-900 px-4 py-3 flex items-center justify-center space-x-2 border-b border-amber-200">
-        <AlertTriangle className="h-5 w-5" aria-hidden="true" />
-        <p className="font-medium text-sm sm:text-base text-center">
-          Demo only. Synthetic data. MemoryBridge is not a medical device and does not replace caregivers or healthcare professionals.
-        </p>
-      </div>
-
       {/* Main Header / Nav */}
       <header className="bg-white border-b border-slate-200 shadow-sm sticky top-0 z-40">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">

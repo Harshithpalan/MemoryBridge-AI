@@ -32,12 +32,6 @@ export default async function TodayPage() {
         Skip to routines
       </a>
 
-      {/* Demo banner */}
-      <div className="today-demo-banner" role="complementary" aria-label="Demo notice">
-        <AlertTriangle className="today-demo-banner-icon" aria-hidden="true" />
-        <span>Demo only. Synthetic data. Not a medical device.</span>
-      </div>
-
       {/* User greeting header */}
       <header className="today-header">
         <div className="today-header-inner">

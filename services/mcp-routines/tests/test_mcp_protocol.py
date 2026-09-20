@@ -17,7 +17,7 @@ server_py_path = os.path.join(project_root, "src", "server.py")
 server_params = StdioServerParameters(
     command=sys.executable,
     args=[server_py_path],
-    env={**os.environ, "DATABASE_URL": os.environ.get("TEST_DATABASE_URL", "")},
+    env={**os.environ, "PYTHONPATH": project_root, "DATABASE_URL": os.environ.get("TEST_DATABASE_URL") or os.environ.get("DATABASE_URL", "")},
 )
 
 
@@ -42,7 +42,9 @@ def seed_test_data(db_session: Session):
         preferred_name="Maria",
         approved_preferences_json={"approved_contacts": ["Anna Petrova"]},
     )
-    db_session.add_all([cg, au, rel, profile])
+    db_session.add_all([cg, au])
+    db_session.flush()
+    db_session.add_all([rel, profile])
     db_session.commit()
     return {"cg": cg, "au": au}
 
