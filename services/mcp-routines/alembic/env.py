@@ -1,5 +1,15 @@
 import os
 from logging.config import fileConfig
+from pathlib import Path
+
+# Load .env from the mcp-routines directory so DATABASE_URL is available
+_env_file = Path(__file__).resolve().parent.parent / ".env"
+if _env_file.exists():
+    for line in _env_file.read_text().splitlines():
+        line = line.strip()
+        if line and not line.startswith("#") and "=" in line:
+            key, _, val = line.partition("=")
+            os.environ.setdefault(key.strip(), val.strip())
 
 from sqlalchemy import engine_from_config
 from sqlalchemy import pool
@@ -64,13 +74,9 @@ def run_migrations_offline() -> None:
 
 def run_migrations_online() -> None:
     """Run migrations in online mode (connect and apply)."""
+    from sqlalchemy import create_engine
     url = _get_migration_url()
-    config.set_main_option("sqlalchemy.url", url)
-    connectable = engine_from_config(
-        config.get_section(config.config_ini_section, {}),
-        prefix="sqlalchemy.",
-        poolclass=pool.NullPool,
-    )
+    connectable = create_engine(url, poolclass=pool.NullPool)
 
     with connectable.connect() as connection:
         context.configure(

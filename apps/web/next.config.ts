@@ -53,6 +53,11 @@ const nextConfig: NextConfig = {
   // the server, avoiding bundling node_modules that are already in the image.
   output: "standalone",
 
+  devIndicators: {
+    appIsrStatus: false,
+    buildActivity: false,
+  },
+
   async redirects() {
     return [
       {

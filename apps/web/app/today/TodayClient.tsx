@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useTransition, useRef, useCallback } from 'react';
+import { useState, useTransition, useRef, useCallback, useEffect } from 'react';
 import { TodayRoutine } from '@/lib/api-client';
 import { markDoneAction, helpAction, contactAction } from './actions';
 
@@ -278,18 +278,23 @@ export function TodayClient({ routines }: Props) {
 function LiveClock() {
   const [time, setTime] = useState<string>('');
 
-  // Format time immediately on client
-  if (typeof window !== 'undefined' && !time) {
-    setTime(
-      new Intl.DateTimeFormat('en-GB', {
-        hour: '2-digit',
-        minute: '2-digit',
-        weekday: 'long',
-        day: 'numeric',
-        month: 'long',
-      }).format(new Date())
-    );
-  }
+  useEffect(() => {
+    const updateTime = () => {
+      setTime(
+        new Intl.DateTimeFormat('en-GB', {
+          hour: '2-digit',
+          minute: '2-digit',
+          weekday: 'long',
+          day: 'numeric',
+          month: 'long',
+        }).format(new Date())
+      );
+    };
+    
+    updateTime();
+    const interval = setInterval(updateTime, 60000); // Update every minute
+    return () => clearInterval(interval);
+  }, []);
 
   return (
     <div className="today-clock" aria-label="Current date and time" aria-live="off">

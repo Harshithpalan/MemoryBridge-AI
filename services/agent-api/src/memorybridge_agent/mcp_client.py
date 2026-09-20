@@ -27,8 +27,14 @@ MCP_ROUTINES_DIR = os.environ.get("MCP_ROUTINES_DIR") or os.path.join(
 # In the Docker container, all packages are installed in the system site-packages.
 # Prefer a venv if it exists (local development); otherwise use sys.executable
 # (the same Python interpreter running the FastAPI process).
-_venv_python = os.path.join(MCP_ROUTINES_DIR, "venv", "bin", "python")
-MCP_PYTHON = _venv_python if os.path.isfile(_venv_python) else sys.executable
+_venv_python_unix = os.path.join(MCP_ROUTINES_DIR, "venv", "bin", "python")
+_venv_python_win = os.path.join(MCP_ROUTINES_DIR, "venv", "Scripts", "python.exe")
+if os.path.isfile(_venv_python_unix):
+    MCP_PYTHON = _venv_python_unix
+elif os.path.isfile(_venv_python_win):
+    MCP_PYTHON = _venv_python_win
+else:
+    MCP_PYTHON = sys.executable
 
 
 async def call_mcp_tool(
